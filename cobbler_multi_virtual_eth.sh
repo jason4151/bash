@@ -2,7 +2,6 @@
 #
 # Adds multiple virutal interfaces to a system in cobbler
 #
-# Jason A. Moskowitz
 
 if [ $# -eq 0 ]; then
   echo "Usage: $0 HOSTNAME FILE MAC"
