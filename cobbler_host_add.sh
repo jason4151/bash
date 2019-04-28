@@ -2,7 +2,6 @@
 #
 # Add a host to cobbler the easy way
 #
-# Jason A. Moskowitz 
 
 if [ $# -eq 0 ]; then
   echo "Usage: $0 FQDN IP NETMASK GATEWAY MAC"
