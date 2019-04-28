@@ -1,2 +1,2 @@
 # bash
-A collection of Bash scripts and functional examples.
+A collection of Bash scripts and examples.
