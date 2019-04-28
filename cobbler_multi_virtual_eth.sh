@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Adds multiple virutal interfaces to a system in cobbler
+# Adds multiple virutal interfaces to a system in Cobbler
 #
 
 if [ $# -eq 0 ]; then

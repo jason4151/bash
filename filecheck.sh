@@ -1,6 +1,9 @@
 #!/bin/bash
+#
+# Demonstrates a file check
+# 
 
-FILE="/Users/jason4151/foo.txt"
+FILE=$1
 
 if [ -e $FILE ]
 	then

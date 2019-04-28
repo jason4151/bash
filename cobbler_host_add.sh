@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Add a host to cobbler the easy way
+# Add a host to Cobbler the easy way
 #
 
 if [ $# -eq 0 ]; then
@@ -45,11 +45,12 @@ EOF
     exit 1
   else
     sudo /usr/bin/cobbler system add --name=${HOST} --profile=${PROFILE} --hostname=${FQDN} --interface=eth0 --mac-address=${MAC} --static=yes --management=yes --ip-address=${IP} --gateway=${GATEWAY} --netmask=${NETMASK}
-
-  sudo /usr/bin/cobbler system report --name=${HOST} > /dev/null
-
-  if [ $? -eq 1 ]; then
-    echo -e "\nError: System was not added to Cobbler"
-  else
-    echo -e "\n${FQDN} successfully added to Cobbler"
+    sudo /usr/bin/cobbler system report --name=${HOST} > /dev/null
+    
+    if [ $? -eq 1 ]; then
+      echo -e "\nError: System was not added to Cobbler"
+      exit 1
+    else
+      echo -e "\n${FQDN} successfully added to Cobbler"
+      exit 0
   fi

@@ -1,5 +1,5 @@
 # .bashrc
-
+#
 # Personal environment variables and startup programs go in .bash_profile.
 # User specific aliases and fuctions go in .bashrc. System wide environment
 # variables and startup programs are in /etc/profile. System wide aliases
@@ -13,7 +13,6 @@ fi
 #-------------------------------------------------------------
 # Environment
 #-------------------------------------------------------------
-
 # Set umask
 umask 002
 
@@ -47,7 +46,6 @@ alias mv='mv -i'
 #-------------------------------------------------------------
 # The 'ls' family
 #-------------------------------------------------------------
-
 # Add colors for filetype and  human-readable sizes by default on 'ls':
 alias ls='ls -hF'
 alias lx='ls -lXB'         #  Sort by extension.
@@ -66,12 +64,10 @@ alias tree='tree -Csuh'    #  Nice alternative to 'recursive ls'
 #-------------------------------------------------------------
 # Tailored 'less'
 #-------------------------------------------------------------
-
 alias more='less'
 export PAGER='less'
 export LESSCHARSET='utf-8'
 export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'
-                # Use this if lesspipe.sh exists.
 export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
 :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
 
@@ -87,29 +83,14 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #-------------------------------------------------------------
 # Environment specific shortcuts
 #-------------------------------------------------------------
-
 alias ..='cd ..'
 alias doc='cd ~/Documents'
 alias dl='cd ~/Downloads'
 alias svi='sudo vim'
 
 #-------------------------------------------------------------
-# Useful commands
-#-------------------------------------------------------------
-
-# Edit and source .bashrc
-alias virc='vi ~/.bashrc; . ~/.bashrc'
-
-# Progress bar on file copy
-alias cpr="rsync --progress -ravz" 
-
-# Pass useful options to wget
-alias wgetall='wget -rpkc'
-
-#-------------------------------------------------------------
 # System diagnostics
 #-------------------------------------------------------------
-
 # Get memory information
 alias meminfo='free -mlt'   
 
@@ -141,9 +122,8 @@ alias lsofdel='lsof +L1'
 alias mountt='mount | column -t'
 
 #-------------------------------------------------------------
-# System Activity Report
+# System Activity Report (sar)
 #-------------------------------------------------------------
-
 # CPU usage of all CPUs
 alias sar_cpu='sar -u 1 10'
 
@@ -169,13 +149,23 @@ alias sar_net='sar -n DEV 3 10'
 alias sar_net_error='sar -n EDEV 3 10'
 
 #-------------------------------------------------------------
+# Useful aliases
+#-------------------------------------------------------------
+# Edit and source .bashrc
+alias virc='vi ~/.bashrc; . ~/.bashrc'
+
+# Progress bar on file copy
+alias cpr="rsync --progress -ravz" 
+
+# Pass useful options to wget
+alias wgetall='wget -rpkc'
+
+# Generate random password
+alias pwgen='pwgen -N 1 -sy 32'
+
+#-------------------------------------------------------------
 # Functions
 #-------------------------------------------------------------
-
-# SSH to auto
-ssh-auto() {
-  ssh -A ec2-user@52.0.30.183
-}
 
 # Find files and directories newer than specified date 
 findnewer() {
@@ -209,7 +199,7 @@ mkmedia() {
 
 # Puppet apply
 puppetapply() {
-  puppet_module_path='~/workspace/puppet/modules'
+  puppet_module_path='~/Projects/puppet/modules'
   command -v puppet &> /dev/null
   if [ $? -eq 1 ]; then
     echo "Notice: Puppet is not installed"
@@ -249,24 +239,31 @@ mktar() { tar cvf "${1%%/}.tar" "${1%%/}/"; }
 # Create a ZIP archive of a file or directory
 mkzip() { zip -r "${1%%/}.zip" "$1"; }
 
-# Generate a random 12 character password
-#pwgen() { openssl rand -base64 16; }
-alias pwgen='pwgen -N 1 -sy 16'
+# Generate a random password
+#pwgen() { openssl rand -base64 32; }
 
 # SSH
-pi() { ssh pi@192.168.13.105; }
-addkey() { for i in $(find /Volumes/Private/Accent/AWS/SSH-key-pairs/ -name "*pem*"); do ssh-add -k $i; done }
-jenkins() { ssh -i /Volumes/Private/Accent/AWS/Keys/sysadmin-accent-dev-us-east-1.pem.txt ec2-user@10.100.36.13; }
-nexus() { ssh -i /Volumes/Private/Accent/AWS/Keys/sysadmin-accent-dev-us-east-1.pem.txt ec2-user@10.100.41.81; }
+rpi() { ssh rpi@0.0.0.0; }
+ssh-add-keys() { for i in $(find /Volumes/Private/Keys/ -name "*pem*"); do ssh-add -k $i; done }
 
+# What's my IP
 whatsmyip() { dig TXT +short o-o.myaddr.l.google.com @ns1.google.com; }
 
-# macOS Maintenance
-maintenance() { sudo periodic daily weekly monthly; }
+# macOS maintenance
+maintenance() {
+  sudo periodic daily weekly monthly
+  sudo atsutil databases -remove
+  sudo rm -rf ~/Library/{Caches,Logs}/*
+  defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
+  sudo killall -HUP mDNSResponder
+}
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+# Update Homebrew
+brewsky() {
+  brew update
+  brew upgrade
+  brew cask outdated | cut -f 1 | xargs brew cask reinstall
+  brew doctor
+  brew missing
+  brew cleanup -s
+}

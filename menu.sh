@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# Demonstrates a Bash menu
+#
 
 while : # Loop forever
 do

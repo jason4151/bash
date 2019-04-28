@@ -1,8 +1,11 @@
+# .bash_profile
+#
+
 if [ -f ~/.bashrc ]; then
 . ~/.bashrc
 fi
 
-PATH=$PATH:$HOME/bin:$HOME/Library/Python/3.7/bin
+PATH=$PATH:$HOME/bin:$HOME/Library/Python/3.7/bin:/usr/local/sbin
 
 export PATH
 

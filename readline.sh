@@ -1,9 +1,13 @@
 #!/bin/sh
-file="print-servers"
+#
+# Demonstrates reading lines from file
+#
+
+FILE="foo"
 
 cat $FILE |
-while read PRINTSERVER
-do
-echo $PRINTSERVER
-sleep 2
-done
+while read LINE
+  do
+    echo $LINE
+    sleep 1
+  done

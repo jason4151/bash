@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# ecs_deploy
-# Date: 01/25/18
-# Notes: Script for triggering blue/green deployments on Amazon ECS.
-#        This script was derived from: github.com/silinternational/ecs-deploy
+# Script for triggering blue/green deployments on Amazon ECS. This script was
+# obtained from: github.com/silinternational/ecs-deploy. It has been modified
+# to support additional AWS Profiles using the -p | --profile option.
 #
+
 # Setup default values for variables
 CLUSTER=false
 SERVICE=false
