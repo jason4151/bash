@@ -166,7 +166,6 @@ alias pwgen='pwgen -N 1 -sy 32'
 #-------------------------------------------------------------
 # Functions
 #-------------------------------------------------------------
-
 # Find files and directories newer than specified date 
 findnewer() {
   NEWER='/tmp/find-newer'
