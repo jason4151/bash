@@ -161,7 +161,7 @@ alias cpr="rsync --progress -ravz"
 alias wgetall='wget -rpkc'
 
 # Generate random password
-alias pwgen='pwgen -N 1 -sy 32'
+alias pwgen='pwgen -sy 32 1'
 
 #-------------------------------------------------------------
 # Functions
