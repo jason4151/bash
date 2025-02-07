@@ -1,6 +1,6 @@
 # AWS Jump-Box Script
 
-This script is designed to establish a secure session with a jump-box instance in our AWS environments. It performs several checks and operations to ensure a smooth connection.
+This script is designed to establish a secure session with a jump-box EC2 instance in an AWS environment. It performs several checks and operations to ensure a smooth connection.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ chmod +x aws-jump-box.sh
 
 # AWS Jump-Box Port Forwarding Script
 
-This script is designed to establish a secure port forwarding session to a jump-box instance in our AWS environment. It includes several functions to handle authentication, retrieve necessary information, and start the session.
+This script is designed to establish a secure port forwarding session to a jump-box EC2 instance in an AWS environment. It includes several functions to handle authentication, retrieve necessary information, and start the session.
 
 ## Prerequisites
 
