@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# macOS maintenance
+# macOS maintenance (deprecated)
 #
 
 echo "Running all periodic maintenance scripts."
