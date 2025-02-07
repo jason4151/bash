@@ -1,3 +1,6 @@
+# Shell Scripts
+An assortment of shell scripts that do various things.
+
 # AWS Jump-Box Script
 
 This script is designed to establish a secure session with a jump-box (EC2 instance) in an AWS environment. It performs several checks and operations to ensure a smooth connection.
