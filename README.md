@@ -1,5 +1,5 @@
 # Shell Scripts
-An assortment of shell scripts that do various things.
+A collection of shell scripts and examples that do all sorts of things.
 
 # AWS Jump-Box Script
 
